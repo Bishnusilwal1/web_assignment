@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+ <main>
+        <div class="container">
+            
+    <script src="../Scripts/vendor/common/jquery.min.js"></script>
+    <script src="../Scripts/jquery.validate.min.js"></script>
+    <script src="../Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<section class="page-details">
+    <div class="container">
+        <div class="form-part register-form clearfix">
+            <div id="registerDiv"
+                 class="signup-form authentication-forms acc-head">
+                <div class="row form-whole-content-wrapper">
+                    <div class="col-xs-12 col-md-4 form-image-section-wrapper">
+                        <div class="form-image-section"></div>
+                    </div>
+                    <div class="col-xs-12 col-md-8 form-content-section-wrapper">
+<form action="https://www.bsrmovies.com/register" class="add-user fv-form fv-form-bootstrap" id="register-form" method="post" role="form"><input name="__RequestVerificationToken" type="hidden" value="wfK-DEOkJEW2OchO26gD6dqSxKu-_DCbTGIoaceuro0y10ePlcfo2gMhZUBpp7rHu6RxysxvrPy5ii2u_U97tbOzuBDGusyu-UA5-bYSEWQ1" />                            <button type="submit"
+                                    class="fv-hidden-submit"
+                                    style="display: none; width: 0px; height: 0px;"></button>
+                            <h2>Sign Up</h2>
+                            <div id="error-div">
+                               
+                            </div>
+                            <div class="validation-summary-valid"
+                                 data-valmsg-summary="true">
+                               
+                            </div>
+                            <input id="registerID"
+                                   name="registerID"
+                                   type="hidden"
+                                   value="afa0dbe8-31a9-449b-914c-09280672d471" />
+                            <div class="form-info"> All fields are compulsory.</div>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <input class="" data-val="true" data-val-required="The FirstName field is required." id="FirstName" name="FirstName" placeholder="First Name" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <input class="form-control" data-val="true" data-val-required="The LastName field is required." id="LastName" name="LastName" placeholder="Last Name" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <input class="form-control" data-val="true" data-val-required="The Email field is required." id="Email" name="Email" placeholder="Email" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <input class="" data-val="true" data-val-regex="Email Invalid" data-val-regex-pattern="^[0-9]*$" data-val-required="The Mobile field is required." id="Mobile" name="Mobile" placeholder="Phone" type="text" value="" />
+                                    <span class="field-validation-valid" data-valmsg-for="Mobile" data-valmsg-replace="true"></span>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <input class="form-control" data-val="true" data-val-regex="Password must be greater than eight characters." data-val-regex-pattern="^.{8,}$" data-val-required="The Password field is required." id="Password" name="Password" placeholder="Password" type="password" />
+                                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <input class="form-control" data-val="true" data-val-equalto="Password mismatch" data-val-equalto-other="*.Password" data-val-required="The ConfirmPassword field is required." id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" type="password" />
+                                    <span class="field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                                </div>
+
+                                
+
+
+                                <div class="col-xs-12 col-sm-6 form-group">
+                                    <span class="signup-terms-and-condition">
+                                        By clicking on the Submit button, you agree to the
+                                        <a href="../Content/Terms-and-Conditionsc5a0.html?me=16">Terms and Conditions</a>
+                                        of BSR Cinemas.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="submit-wrapper">
+                                <input type="submit" class="btn-style1" value="Submit" />
+                            </div>
+</form>                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
