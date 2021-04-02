@@ -1,11 +1,14 @@
 
 from django.urls import path
 
-from . import views
+from Ticket import views
 
 urlpatterns = [
+<<<<<<< HEAD
+    path('',views.index,name="ticket"),
+=======
     path('',views.index,name="index"),
-    path('login/',views.login_page,name="login"),
-    path('register/',views.reg_page,name="register"),
-    
+>>>>>>> 3338aa60c56689aa9e0b2b4302d550cf2d0123d9
+    path('cinemas/',views.cinemas,name="cinemas"),
+    path('tickets/',views.tickets,name="tickets"),
 ]

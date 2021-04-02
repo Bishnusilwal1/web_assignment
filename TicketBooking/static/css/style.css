@@ -1,59 +1,298 @@
-.carousel-inner{
-    height: 80vh;
-    background-color: black;
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
 }
 
-body,
-		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			background: #60a3bc !important;
-		}
-		.user_card {
-			height: 400px;
-			width: 350px;
-			margin-top: auto;
-			margin-bottom: auto;
-			background: #f39c12;
-			position: relative;
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			padding: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
+.list-group-item {
+  border: 0 0 0 0;
+}
 
-		}
-		
-		.form_container {
-			margin-top: 100px;
-		}
-		.login_btn {
-			width: 100%;
-			background: #c0392b !important;
-			color: white !important;
-		}
-		.login_btn:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-		.login_container {
-			padding: 0 2rem;
-		}
-		.input-group-text {
-			background: #c0392b !important;
-			color: white !important;
-			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
-		}
-		.input_user,
-		.input_pass:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-			background-color: #c0392b !important;
-		}
+.container-sm {
+  height: 90vh;
+}
+/*=======================================================*/
+/*loing page*/
+/* Bordered form */
+
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type="text"],
+input[type="password"] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 4px 0;
+  display: block;
+  border: 2px solid #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4caf50;
+  color: white;
+  width: 100px;
+  padding: 10px 18px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: 100px;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+.card .card-image {
+	position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+
+.card .card-image .card-actions{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	margin-left: 8px;
+}
+.card .card-image .card-actions > button{
+	background-color: rgba(0, 0, 0, 0.4);
+	width: auto;
+	font-size: 12px;
+	border-radius: 20px;
+	margin: 10px 4px;
+}
+
+.card .card-image .card-actions > button:hover{
+	background-color: #0d0d0d;
+	color: white;
+}
+
+.card .card-image > img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 340px;
+  width: 100%;
+  -webkit-transition: all 400ms;
+  -o-transition: all 400ms;
+  transition: all 400ms;
+}
+
+.card > .card-image img:hover {
+  -webkit-transform: scale(2);
+      -ms-transform: scale(2);
+          transform: scale(2);
+}
+
+.col-md-3.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: black;
+}
+
+.container input {
+  width: 320px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 25px;
+  outline: none;
+  border: 1px solid #bfbfbf;
+  margin: 9px 0px;
+}
+.container input:focus {
+  border: 1px solid red;
+}
+
+.auth-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+
+
+.auth-button {
+	height: 40px;
+	padding: 0px 20px;
+	border-radius: 25px;
+	text-align: center;
+	margin: 20px 0px;
+}
+
+.auth-href{
+	text-decoration: none;
+	color: #707070;
+	margin-top: 8px;
+}
+
+.remember-me{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.remember-me > input{
+	width: auto;
+	height: auto;
+}
+
+.remember-me > a{
+	text-decoration: none;
+	color: #707070;
+	margin-left: 9px;
+}
+
+.already-signup a {
+	text-decoration: none;
+}
+
+.footer{
+  margin-top: 5rem;
+	padding: 32px 4rem;
+	background-color: #2C2A2C;
+}
+
+.footer h5{
+	font-size: 20px;
+	font-weight: 700;
+	color: #e6e6e6;
+	margin-bottom: 12px;
+}
+
+.footer ul {
+	list-style: none;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: start;
+	    -ms-flex-align: start;
+	        align-items: flex-start;
+}
+
+.footer ul li {
+	font-size: 14px;
+	color: #bfbfbf;
+	margin: 10px 0px;
+	cursor: pointer;
+	list-style: none;
+}
+
+.footer ul li:hover {
+	color: white;
+}
+
+
+
+/* MOVIE DETAILS */
+
+.movie-wrapper{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  padding: 3rem;
+}
+
+.movie-info-section{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  justify-content: center;
+}
+
+.movie-info-section .movie-poster > img{
+  width: 40rem;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  margin: 0px 20px;
+}
+
+.movie-infos{
+  margin: 0px 20px;
+  min-width: 420px;
+}
+
+.movie-infos-actions > button{
+  padding: 20px;
+  text-align: center;
+}

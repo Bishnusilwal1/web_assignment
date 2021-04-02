@@ -1,0 +1,53 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="movie-wrapper">
+  <div class="movie-info-section">
+    <div class="movie-poster">
+      <img
+        src="{{movie.poster_url}}"
+        alt=""
+      />
+    </div>
+    <div class="movie-infos">
+      <div class="title">
+        <h1>{{movie.name}}</h1>
+      </div>
+
+      <p>
+        <strong>Genre:</strong>
+        {% for g in genre %}
+          <p>{{g.name}}</p>
+        {% endfor %}
+      </p>
+
+      <p>
+        <strong>Run time:</strong>
+        {{movie.runTime}}min
+      </p>
+      <p>
+        <strong>Director:</strong>
+        {{movie.director.name}}
+      </p>
+      <p>
+        <strong>Cast:</strong>
+       {% for c in cast %}
+        <p>{{c.name}}</p>
+       {% endfor %}
+      </p>
+
+      <div class="movie-infos-actions">
+        <button>Buy Ticket</button>
+        <button>Watch Trailer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="synopsis">
+    <p>
+      <strong>SYNOPSIS:</strong>
+      Roohi is a comedy action film directed by bishnu silwal.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

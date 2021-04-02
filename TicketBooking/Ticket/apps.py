@@ -1,5 +1,7 @@
 from django.apps import AppConfig
 
-
 class TicketConfig(AppConfig):
-    name = 'Ticket'
+    name = 'Tickek'
+
+    def ready(self):
+        import Ticket.signalsa

@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form method="POST">
+ {% csrf_token %} 
+	<div class="container auth-form">
+	<h1>Sign In</h1>
+    <p>Welcome Back!</p>
+    <hr>
+	  {{form.as_p}}
+		{% for message in messages %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+			<p>{{message}}</p>
+			{% endif %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+			<p>{{message}}</p>
+			{% endif %}
+		{% endfor %}
+
+	  <button class="auth-button" type="submit">Login</button>
+	  <a class="auth-href" href="#">Forgot password?</a>
+	   
+	</div>
+</form>
+
+{% endblock %}

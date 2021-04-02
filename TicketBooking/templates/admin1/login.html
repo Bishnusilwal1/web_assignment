@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="col-md-6 m-auto">
+        <form action="" method="post">
+            {% csrf_token %} 
+               <div class="container auth-form">
+               <h1>Sign In</h1>
+               <p>Welcome Back!</p>
+               <hr>
+                 <label for="username"><b>Username</b></label>
+                 <input type="text" placeholder="Enter Username" name="username" required>
+             
+                 <label for="password"><b>Password</b></label>
+                 <input type="password" placeholder="Enter Password" name="password" required>
+           
+                 <div class="remember-me">
+                   <input type="checkbox" checked="checked" name="remember">
+                   <a href="">Remember Me</a>
+                 </div> 
+           
+                 <button class="auth-button" type="submit">Login</button>
+                 <a class="auth-href" href="#">Forgot password?</a>
+                  
+               </div>
+           </form>
+           
+    </div>
+</body>
+</html>

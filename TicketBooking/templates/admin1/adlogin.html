@@ -1,0 +1,24 @@
+{% extends 'admin1/index.html' %}
+
+{% block content %}
+
+<form method="POST">
+ {% csrf_token %} 
+	  {{form.as_p}}
+
+		{% for message in messages %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+			<p>{{message}}</p>
+			{% endif %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+			<p>{{message}}</p>
+			{% endif %}
+		{% endfor %}
+
+	  <button class="auth-button" type="submit">Login</button>
+	  <a class="auth-href" href="#">Forgot password?</a>
+	   
+	</div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'admin1/index.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 p-2 bg-dark text-light">
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <img
+                    width="50px"
+                    height="50px"
+                    src="{% static 'image/b1.jpg' %}"
+                    class="rounded"
+                    >
+                </div>
+                <div class="col-md-8">
+                    <span>SuperUser</span>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="col-md-8">
+                    <a class="text" href="{% url 'dashboard' %}">
+                        Dashboard
+                    </a>                
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-compact-disc"></i>
+                </div>
+                <div class="col-md-8">
+                    <a class="text" href="{% url 'theatre' %}">
+                        Theatre
+                    </a>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="col-md-8">
+                    <a class="text" href="{% url 'movie' %}">
+                        Movies
+                    </a>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="col-md-8">
+                    <a class="text" href="">
+                        ShowTime
+                    </a>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="col-md-8">
+                    <a class="text" href="{% url 'users' %}">
+                        Users
+                    </a>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="col-md-8">
+                    <a class="text" href="">
+                        Update password
+                    </a>
+                </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-4">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <div class="col-md-8">
+<<<<<<< HEAD
+                    <a class="text" href="{% url 'adlogout' %}">
+=======
+                    <a class="text" href="{% url 'logout' %}">
+>>>>>>> 3338aa60c56689aa9e0b2b4302d550cf2d0123d9
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            {% block main_content %}
+                {% include 'admin1/grid-dash.html' %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

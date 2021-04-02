@@ -1,0 +1,60 @@
+ {% extends 'admin1/dashboard.html' %}
+
+{% block main_content %}
+<h1>Movies</h1>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3>Movies's List</h3>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" onclick="reDir()">Add</button>
+        </div>
+    </div>
+    <table class="table bg-secondary text-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Profile</th>
+            <th scope="col">Fullname</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Location</th>
+            <th scope="col">Joined At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in user %}
+            <tr>
+                <th scope="row">
+                    <span>{{u.user.id}}</span>
+                </th>
+                <td>
+                    <img src="{{u.profile_img.url}}" width="100px;" alt="">
+                </td>
+                <td>
+                    <span>{{u.fullname}}</span>
+                </td>
+                <td>
+                    <span>{{u.phone}}</span>
+                </td>
+                <td>
+                    <span>{{u.location}}</span>
+                </td>
+                <td>
+                    <a href="" class="text-warning">Edit</a>
+                    |
+                    <a href="" class="text-danger">Delete</a>
+                </td>            
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function reDir(){
+        window.location.href = "";
+    }
+</script>
+
+{% endblock %}
