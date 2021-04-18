@@ -6,33 +6,28 @@
 </title>
 {% endblock %}
 
-{% load static %}
-
 {% block content %}
-    <div class="search_form">
-        <form action="" method="get">
-            {% csrf_token %}
-            <input type="text" name="query" id="query">
-            <br>
-            <input type="submit" value="Search">
-        </form>
-    </div>
-    <div class="search_list">
-        <div class="container">
-    {% for obj in filter.qs %}
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <img src="{{obj.poster_url}}" class="img-responsive rounded" width="200px" height="150px" alt="">
-        </div>
-        <div class="col-md-10">
-        <a href="{% url 'details' obj.id %}">
-            <h3>{{obj.name}}</h3>
-            </a>
-        </div>
-    </div>
-    {% endfor %}
 
-            
-        </div>
+    <div class="col-md-6 m-auto mt-4">
+        <h1 class="text-dark text-capitalize">Search</h1>
+        {% if movie_qs %}
+        {% for movie in movie_qs %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{movie.poster_url}}" class="rounded w-100" alt="">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="text-capitalize my-3">{{movie.name}}</h3>
+                        <h5 class="text-capitalize my-3"><strong>Genre : </strong>{{movie.get_genre_values}}</h5>
+                        <h5 class="text-capitalize my-3"><strong>Casts : </strong>{{movie.get_casts_values}}</h5>
+                        <h5 class="text-capitalize my-3"><strong>Director : </strong>{{movie.director.name}}</h5>
+                        <a href="{% url 'details' j.id %"} class="btn btn-warning">View Details</a>
+                    </div>
+                </div>
+        {% endfor %}
+        {% else %}
+        <h5>No data found</h5>
+        {% endif %}
     </div>
+
 {% endblock %}

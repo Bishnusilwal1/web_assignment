@@ -1,96 +1,39 @@
 {% extends 'index.html' %}
 
 {% block content %}
- <!-- 
-       now showing section
-  -->
-    <div class="container mt-4 p-3">
-      <h3 class="text-capitalize">QFX Kumari Hall</h3>
+
+  <style>
+
+    #movie-card{
+      border-radius: 10px;
+    }
+
+  </style>
+
+    <div class="container my-4 p-3">
+    {% for i in cinema %}
+      <h3 class="text-capitalize">{{i.name}}</h3>
       <div class="row">
+      {% for j in movie %}
          <div class="col-md-3">
-           <div class="card">
-             <img src="https://images4.alphacoders.com/588/thumb-1920-588227.jpg" alt="">
+           <div class="card" id="movie-card">
+             <img src="{{j.poster_url}}" alt="" class="rounded">
              <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
+             <div class="row">
+               <div class="col-md-6">
+                <div class="card-title text-capitalize">{{j.name}}</div>
+               </div>
+               <div class="col-md-6">
+                <a class="btn btn-outline-success" href="{% url 'details' j.id %}" >View Details</a>
+               </div>
+             </div>
             </div>
            </div>
          </div>
-         <div class="col-md-3">
-          <div class="card">
-            <img src="https://images5.alphacoders.com/436/thumbbig-436570.jpg" alt="">
-            <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img src="https://images7.alphacoders.com/646/thumb-1920-646766.jpg" alt="">
-           <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img src="https://images4.alphacoders.com/646/thumb-1920-646832.jpg" alt="">
-            <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+        
       </div> 
-      
-</div>
 
-
-  <!-- 
-       coming soon section
-  -->
-  <div class="container mt-4 p-3">
-    <h3 class="text-capitalize">City Center</h3>
-    <div class="row">
-       <div class="col-md-3">
-         <div class="card">
-           <img src="https://th.bing.com/th/id/OIP.vrfXKuzH2eSGTCEUiaCG_QHaEK?pid=ImgDet&rs=1" alt="">
-           <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-         </div>
-       </div>
-       <div class="col-md-3">
-        <div class="card">
-          <img src="https://images8.alphacoders.com/561/thumbbig-561000.jpg" alt="">
-          <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img src="https://images4.alphacoders.com/562/thumbbig-562281.jpg" alt="">
-         <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card">
-          <img src="https://images7.alphacoders.com/671/thumb-1920-671281.jpg" alt="">
-          <div class="card-body">
-              <div class="card-title">fsdaf</div>
-              <input type="button" class="btn btn-outline-success" onclick="" value="Views Details">
-            </div>
-        </div>
-      </div>
-    </div> 
-    
+  {% endfor %}
 </div>
 {% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% load bootstrap %}
+{% block title %}
+<title>Update Profile</title>
+{% endblock%}
+
+{% block content %}
+<style>
+.help-block{
+color:red;
+font-weight:bold;
+}
+.errorlist{
+color:red;
+font-weight:bold;
+}
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Current Details</h1>
+            <div class="card profile-card">
+                <div class="card-body">
+                    <img src="{{request.user.profile.profile_img.url}}" width="400" class="img-responsive">
+
+                </div>
+                <div class="card-footer">
+                    <div class="py-3">Fullname : {{request.user.profile.fullname}}</div>
+                    <div class="py-3">Email : {{request.user.email}}</div>
+                    <div class="py-3">Phone : {{request.user.profile.phone}}</div>
+                    <div class="py-3">Location : {{request.user.profile.location}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="col-md-12">
+                {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <h6 class="success_message py-3 px-1 my-2 text-center">{{message}}</h6>
+                {% endif %}
+
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+                <h6 class="error_message py-3 px-1 my-2 text-center">{{message}}</h6>
+                {% endif %}
+                {% endfor %}
+                <h1 class="text-center">Update Details</h1>
+                <div class="card py-4 px-4" >
+                    <form class="form" style="border: none;" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | bootstrap_horizontal }}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'Fullname';
+    form_fields[3].placeholder = 'Phone';
+    form_fields[4].placeholder = 'Location';
+
+    for (var field in form_fields){
+    field.className += ' form-control my-2'
+    }
+
+</script>
+
+{% endblock %}

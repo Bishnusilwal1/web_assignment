@@ -1,0 +1,77 @@
+ {% extends 'admin1/dashboard.html' %}
+
+{% block main_content %}
+<h1>Ticket</h1>
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3>Ticket's List</h3>
+        </div>
+        
+    </div>
+    <table class="table bg-secondary text-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Show</th>
+            <th scope="col">Cinema</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Location</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in ticket %}
+            <tr>
+                <th scope="row">
+                    <span>{{i.id}}</span>
+                </th>
+
+                <td>
+                    <span>{{i.ticket_user.username}}</span>
+                </td>
+                <td>
+                    <span>{{i.show.name}}</span>
+                </td>
+                <td>
+                    <span>{{i.cinema.name}}</span>
+                </td>
+                <td>
+                    <span>{{i.show.show_start_time}}</span>
+                </td>
+                <td>
+                    <span>{{i.show.show_end_time}}</span>
+                </td>
+
+
+                 <td>
+                    <span>{{i.quantity}}</span>
+                </td>
+                <td>
+                    <span>{{i.cinema.location}}</span>
+                </td>
+                <td>
+                    <span>{{i.show.status}}</span>
+                </td>
+                <td>
+                   | 
+                    <a href="{% url 'delete_ticket' i.id %}" class="text-danger">Delete</a>
+                </td>
+
+                         
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function reDir(){
+        window.location.href = "";
+    }
+</script>
+
+{% endblock %}

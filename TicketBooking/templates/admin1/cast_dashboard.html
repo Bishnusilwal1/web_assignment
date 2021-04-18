@@ -1,0 +1,51 @@
+{% extends 'admin1/dashboard.html' %}
+
+
+{% block main_content %}
+
+
+<h1>Theatres</h1>
+
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3>Theatre's List</h3>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" onclick="reDir()">Add</button>
+        </div>
+    </div>
+    <table class="table bg-secondary text-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cast in casts %}
+            <tr>
+                <th scope="row">
+                    <span>{{cast.id}}</span>
+                </th>
+                <td>
+                    <span>{{cast.name}}</span>
+                </td>
+                
+                <td>
+                    <a href="{% url 'edit_cast' cast.id %}" class="text-danger">Update</a>
+                   | 
+                    <a href="{% url 'delete_cast' cast.id %}" class="text-danger">Delete</a>
+                </td>            
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function reDir(){
+        window.location.href = "{% url 'add_cast' %}";
+    }
+</script>
+{% endblock %}

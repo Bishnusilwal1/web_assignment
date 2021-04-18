@@ -1,33 +1,26 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-{% extends 'index.html' %}
-
-{% block content %}
-
-  {% if user.is_authenticated %}
-    <h1>Welcome, {{request.user.username}}</h1>
-  {% endif %}
-=======
->>>>>>> 720d29e76dacd579ae80cf71034433364c21f93c
 {% extends 'index.html' %} {% block content %}
- <form method="" actions="{% url 'searches' %}">
-  <input type="text" placeholder="Search" />
-    {{form.filter.as_p}}
-    <input type="submit" name="Search" />
-  </form>
-<<<<<<< HEAD
-=======
->>>>>>> 3338aa60c56689aa9e0b2b4302d550cf2d0123d9
->>>>>>> 720d29e76dacd579ae80cf71034433364c21f93c
+
+
+<style>
+  #movie_name {
+    text-decoration: none;
+  }
+</style>
+
+{% comment %} {% for i in movie_qs %}
+
+<a href="{% url 'details' i.id %}">
+	<p>{{i.name}}</p>
+</a>
+{% endfor %} {% endcomment %}
 
 <div
   id="carouselExampleIndicators"
   class="carousel slide"
   data-bs-ride="carousel"
 >
-  <div class="carousel-indicators">
-    <button
+	<div class="carousel-indicators">
+		<button
       type="button"
       data-bs-target="#carouselExampleIndicators"
       data-bs-slide-to="0"
@@ -35,106 +28,120 @@
       aria-current="true"
       aria-label="Slide 1"
     ></button>
-    <button
+		<button
       type="button"
       data-bs-target="#carouselExampleIndicators"
       data-bs-slide-to="1"
       aria-label="Slide 2"
     ></button>
-    <button
+		<button
       type="button"
       data-bs-target="#carouselExampleIndicators"
       data-bs-slide-to="2"
       aria-label="Slide 3"
     ></button>
-  </div>
-  <div class="carousel-inner" style="height: 80vh">
-    <div class="carousel-item active">
-      <img
+	</div>
+	<div class="carousel-inner" style="height: 80vh">
+		<div class="carousel-item active">
+			<img
       src=https://hdqwalls.com/download/black-panther-4k-movie-poster-2018-7t-2560x1080.jpg
       class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img
+			</div>
+			<div class="carousel-item">
+				<img
       src=https://www.hdwallpapers.in/download/robin_hood_movie_4k_8k-1280x720.jpg
       class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img
+				</div>
+				<div class="carousel-item">
+					<img
       src=https://th.bing.com/th/id/R8babeee3e194e1eae3a62161ae661276?rik=UfetVx%2bODb8OPQ&riu=http%3a%2f%2fhdqwalls.com%2fwallpapers%2flogan-movie-poster-pt.jpg&ehk=JmgU03%2bqXlcFpX5Q4XxQToTvPD9wHoieSel70hwA92k%3d&risl=&pid=ImgRaw
       class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button
+					</div>
+				</div>
+				<button
     class="carousel-control-prev"
     type="button"
     data-bs-target="#carouselExampleIndicators"
     data-bs-slide="prev"
   >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button
     class="carousel-control-next"
     type="button"
     data-bs-target="#carouselExampleIndicators"
     data-bs-slide="next"
   >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+			<div class="container search-container">
+				<form method="GET" action="{% url 'searches' %}" id="search_bar">
+    {{movie_filter.form}}
+    
+					<input type="submit" value="Search" id="id_submit" />
+				</form>
+			</div>
 
-<!-- 
-       now showing section
+      	<!-- 
+       Now Showing
   -->
-
-<div class="container mt-4 p-3">
-  <h3 class="text-capitalize">now showing</h3>
-  <div class="row">
-    {% for movie in now_showing %}
-    <div class="col-md-3 mx-2">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{movie.poster_url}}" alt="" />
-          <div class="card-actions">
-            <button>Buy Ticket</button>
-            <button>Watch Trailer</button>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-title text-capitalize">{{movie.name}}</div>
-          <div class="card-genres">{{genre.name}}</div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
+			<div class="container mt-4 p-3">
+						<div class="haddings">
+					<div class="container">
+						<div class="hadding-area">
+							<h2>Now Showing</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+    {% for movie in coming_sooon %} 
+					<div class="col-md-3">
+						<div class=" ">
+							<div class=" gradient">
+								
+<img src="{{movie.poster_url}}" alt="" style="height: 435px;"/>
+<div class="movie-item-content">
+	<div class="movie-item-content-buttom">
+		<div class="movie-item-title">
+			<a href="{% url 'details' movie.id %}">{{movie.name}}</a>
+		</div>
+		<div class="item-cat">
+			<ul>
+				<li>
+					<span>Genre :</span>
+					<a href="{% url 'details' movie.id %}">{{g.name}}</a>
+				</li>
+			</ul>
+			<div class="item-cat-hover">
+				<ul>
+					<li>
+						<span>Release :</span>
+						<a href="{% url 'details' movie.id %}"{{movie.date}}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="movie-item-beta">
+			<div class="movie-details">
+				<a href="{% url 'details' movie.id %}" class="btn btn-button button-detals blck-bg">details</a>
+			</div>
+			<div class="view-movie hover-right">
+				<a class="blck-bg" href="{% url 'details' movie.id %}">Watch Trailer</a>
+			</div>
+		</div>
+	</div>
 </div>
-
-<!-- 
-       coming soon section
+						</div>
+					</div>
+          </div>
+    {% endfor %}
+				</div>
+			</div>
+         	<!-- 
+       Now Showing End
   -->
-<div class="container mt-4 p-3">
-  <h3 class="text-capitalize">Coming Soon</h3>
-  <div class="row">
-    {% for movie in coming_sooon %}
-    <div class="col-md-3 mx-2">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{movie.poster_url}}" alt="" />
-          <div class="card-actions">
-            <button>Buy Ticket</button>
-            <button>Watch Trailer</button>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card- text-capitalize">{{movie.name}}</div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
+			  {% endblock %}
 
-{% endblock %}

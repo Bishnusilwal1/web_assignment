@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form method="POST">
+ {% csrf_token %} 
+	<div class="container auth-form">
+	<h1>Sign In</h1>
+    <p>Welcome Back!</p>
+    <hr>
+	<input type="text" name="name" id="name" value="{{show.name}}">
+    <input type="datetime" name="show_start_time" id="show_start_time" value="{{show.show_start_time}}">
+    <input type="datetime" name="show_end_time" id="show_end_time" value="{{show.show_end_time}}">
+    <input type="text" name="status" id="status" value="{{show.status}}">
+    <input type="number" name="price" id="price" value="{{show.price}}">
+		{% for message in messages %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+			<p class="text-success">{{message}}</p>
+			{% endif %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+			<p class="text-danger">{{message}}</p>
+			{% endif %}
+		{% endfor %}
+	  <button class="auth-button" type="submit">submit</button>
+	  
+	   
+	</div>
+</form>
+
+{% endblock %}

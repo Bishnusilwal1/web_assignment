@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="POST">
+<form style="border: none;" method="POST">
 {% csrf_token %}
   <div class="container">
     
@@ -23,7 +23,7 @@
 
     <button class="auth-button" type="submit">Register</button>
   <div class="container already-signup">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
+    <p>Already have an account? <a href="{% url 'login'%}">Sign in</a>.</p>
   </div>
   </div>
 </form>

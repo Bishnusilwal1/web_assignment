@@ -1,0 +1,51 @@
+{% extends 'admin1/dashboard.html' %}
+
+
+{% block main_content %}
+
+
+<h1>Genres</h1>
+
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h3>Genre's List</h3>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" onclick="reDir()">Add</button>
+        </div>
+    </div>
+    <table class="table bg-secondary text-light">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in genre %}
+            <tr>
+                <th scope="row">
+                    <span>{{i.id}}</span>
+                </th>
+                <td>
+                    <span>{{i.name}}</span>
+                </td>
+                
+                <td>
+                    <a href="{% url 'edit_genre' i.id %}" class="text-danger">Update</a>
+                   | 
+                    <a href="{% url 'delete_genre' i.id %}" class="text-danger">Delete</a>
+                </td>            
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function reDir(){
+        window.location.href = "{% url 'add_genre' %}";
+    }
+</script>
+{% endblock %}

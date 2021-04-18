@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form method="POST">
+ {% csrf_token %} 
+	<div class="container auth-form">
+	<h1>Sign In</h1>
+    <p>Welcome Back!</p>
+    <hr>
+	{{form.as_p}}
+		{% for message in messages %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+			<p class="text-success">{{message}}</p>
+			{% endif %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+			<p class="text-danger">{{message}}</p>
+			{% endif %}
+		{% endfor %}
+	  <button class="auth-button" type="submit">submit</button>
+	  
+	   
+	</div>
+</form>
+
+<script>
+	document.getElementById("id_name").value = "{{movie.name}}";
+	document.getElementById("id_runTime").value = "{{movie.runTime}}";
+	document.getElementById("id_trailer_url").value = "{{movie.trailer_url}}";
+	document.getElementById("id_poster_url").value = "{{movie.poster_url}}";
+</script>
+
+{% endblock %}

@@ -1,14 +1,11 @@
 
 from django.urls import path
 
-from Ticket import views
+from .views import *
 
 urlpatterns = [
-<<<<<<< HEAD
-    path('',views.index,name="ticket"),
-=======
-    path('',views.index,name="index"),
->>>>>>> 3338aa60c56689aa9e0b2b4302d550cf2d0123d9
-    path('cinemas/',views.cinemas,name="cinemas"),
-    path('tickets/',views.tickets,name="tickets"),
+    path('ticket_form/', tickets, name="ticket_form"),
+    path('ticket_view/', ticket_lists, name="ticket_view"),
+    path('cinemas/', cinemas, name="cinemas"),
+    path('search_view/', search_query, name="search_view")
 ]

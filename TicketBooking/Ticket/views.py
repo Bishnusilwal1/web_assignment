@@ -10,23 +10,70 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from accounts.form import LoginForm
 from django.contrib.auth.decorators import login_required
+from Ticket.forms import TicketForm
+from django.contrib import messages
+from Ticket.models import Ticket
+from cinema.models import Movie
+from django.views.generic import ListView
+# from accounts.auth import allowed_user
 
-def index(request):
-    now_showing_movies = Movie.objects.all()[:4]
-    coming_sooon_movies = Movie.objects.all()[:4]
-    genre = Genre.objects.filter(movie=now_showing_movies)
-    context = {
-        'now_showing': now_showing_movies,
-        'coming_sooon': coming_sooon_movies,
-        'genre': genre,
-        }
-    return render (request,"ticket/home.html", context)
-
-
+# @allowed_user(['users'])
 def cinemas(request):
-    context = {}
+    movie = Movie.objects.all()[:4]
+    cinema = Cinema.objects.all()
+    context = {
+        'cinema': cinema,
+        'movie': movie,
+        'activate_cinema': 'active',
+    }
     return render(request, 'ticket/cinemas.html', context)
 
+@login_required(login_url="login")
 def tickets(request):
-    context = {}
-    return render(request, 'ticket/tickets.html', context)
+    inst_user = request.user
+    if request.method == 'POST':
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.ticket_user = inst_user
+            instance.save()
+            messages.add_message(request, messages.SUCCESS, "TIcket added successfully")
+            return redirect('ticket_form')
+        else:
+            messages.add_message(request, messages.ERROR, "Couldnot buy ticket")
+            return render(request, 'tickets/ticket_form.html', {'form':form})
+    context = {
+        'form':  TicketForm(),
+        'activate_ticket': 'active'
+    }
+    print(context)
+    return render(request, 'tickets/ticket_form.html', context)
+
+@login_required(login_url="login")
+def ticket_lists(request):
+    user = request.user
+    ticket = Ticket.objects.filter(ticket_user=user)
+    context = {
+        'ticket': ticket
+    }
+    return render(request, 'tickets/ticket_list.html', context)
+
+# class MovieSearch(ListView):
+#     model = Movie
+#     template_name = "ticket/search_list.html"
+
+#     def get_queryset(self):
+#         query = self.request.GET.get('q')
+#         data = Movie.objects.filter(
+#             Q(name__icontains=query)
+#         )
+#         return data
+
+def search_query(request):
+    query = Movie.objects.filter(name="bishnu vai")
+    filter = MovieFilter(request.GET, queryset=query)
+    context = {
+        'filter': filter
+    }
+    return render(request, 'ticket/search_list.html', context)
+ 

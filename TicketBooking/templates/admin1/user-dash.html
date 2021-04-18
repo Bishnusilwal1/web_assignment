@@ -1,11 +1,9 @@
- {% extends 'admin1/dashboard.html' %}
-
-{% block main_content %}
-<h1>Movies</h1>
+ {% extends 'admin1/dashboard.html' %} {% block main_content %}
+<h1>Users</h1>
 <div class="container mt-5">
     <div class="row mb-4">
         <div class="col-md-6">
-            <h3>Movies's List</h3>
+            <h3>Users's List</h3>
         </div>
         <div class="col-md-6">
             <button class="btn btn-primary" onclick="reDir()">Add</button>
@@ -13,46 +11,48 @@
     </div>
     <table class="table bg-secondary text-light">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Profile</th>
-            <th scope="col">Fullname</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Location</th>
-            <th scope="col">Joined At</th>
-          </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Profile</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Location</th>
+                <th scope="col">Joined At</th>
+                <th scope="col">Actions</th>
+            </tr>
         </thead>
         <tbody>
-          {% for u in user %}
+            {% for u in user %}
             <tr>
                 <th scope="row">
-                    <span>{{u.user.id}}</span>
+                    <span>{{u.id}}</span>
                 </th>
                 <td>
-                    <img src="{{u.profile_img.url}}" width="100px;" alt="">
+                    <img src="{{u.profile.profile_img.url}}" width="100px;" alt="">
                 </td>
                 <td>
-                    <span>{{u.fullname}}</span>
+                    <span>{{u.profile.fullname}}</span>
                 </td>
                 <td>
-                    <span>{{u.phone}}</span>
+                    <span>{{u.profile.phone}}</span>
                 </td>
                 <td>
-                    <span>{{u.location}}</span>
+                    <span>{{u.profile.location}}</span>
                 </td>
                 <td>
-                    <a href="" class="text-warning">Edit</a>
-                    |
-                    <a href="" class="text-danger">Delete</a>
-                </td>            
+                    <span>{{u.profile.created_at}}</span>
+                </td>
+                <td>
+                    <a href="{% url 'delete_user' u.id %}" class="text-danger">Delete</a>
+                </td>
             </tr>
-          {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 
 </div>
 <script>
-    function reDir(){
+    function reDir() {
         window.location.href = "";
     }
 </script>

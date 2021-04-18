@@ -1,6 +1,7 @@
 from django import forms
 from Ticket.models import Show
 from django.contrib.auth.models import User
+from cinema.models import Movie, Genre, Cast, Director
 
 
 class AdminLoginForm(forms.Form):
@@ -10,13 +11,16 @@ class AdminLoginForm(forms.Form):
 class ShowForm(forms.ModelForm):
     class Meta:
         model = Show 
-<<<<<<< HEAD
-        fields = '__all__'
-=======
         fields = '__all__'
 
-class AdminForm(ModelForm):
+
+class UserForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['email', 'password']
->>>>>>> 720d29e76dacd579ae80cf71034433364c21f93c
+        model = User 
+        fields = '__all__'
+
+
+class MovieForm(forms.ModelForm):
+    class Meta:
+        model = Movie 
+        fields = '__all__'

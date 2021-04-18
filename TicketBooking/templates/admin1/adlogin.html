@@ -1,24 +1,30 @@
-{% extends 'admin1/index.html' %}
+{% extends 'admin1/index.html' %} {% block content %}
 
-{% block content %}
 
-<form method="POST">
- {% csrf_token %} 
-	  {{form.as_p}}
+<div class="col-md-6 m-auto mt-4">
+    <h2 class="text-dark text-capitalize text-center">Admin Login</h2>
+    <form method="POST" class="form">
+        {% csrf_token %}
+        <label for="username" class="my-2">Username</label>
+        <input type="text" id="username" class="form-control w-100 rounded-pill" name=username>
+        <label for="password" class="my-2">Password</label>
+        <input type="password" id="password" name="password" class="form-control w-100 rounded-pill">
+        <input type="submit" class="btn btn-primary my-2" value="Login"> {% for message in messages %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <p>{{message}}</p>
+        {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <p>{{message}}</p>
+        {% endif %} {% endfor %}
 
-		{% for message in messages %}
-			{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-			<p>{{message}}</p>
-			{% endif %}
-			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-			<p>{{message}}</p>
-			{% endif %}
-		{% endfor %}
+        <a class="auth-href" href="#">Forgot password?</a>
 
-	  <button class="auth-button" type="submit">Login</button>
-	  <a class="auth-href" href="#">Forgot password?</a>
-	   
-	</div>
+</div>
 </form>
+</div>
+
+<style>
+    .form {
+        width: 100%;
+    }
+</style>
 
 {% endblock %}

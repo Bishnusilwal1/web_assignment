@@ -1,52 +1,69 @@
-{% extends 'index.html' %} {% block content %}
+{% extends 'index.html' %}
 
-<div class="movie-wrapper">
+{% block content %}
+
+<style>
+  #genre, #cast{
+    background-color: #ccc;
+    text-align: center;
+    border-radius: 15px;
+  }
+</style>
+
+<div class="col-md-8 m-auto my-4">
   <div class="movie-info-section">
     <div class="movie-poster">
-      <img
-        src="{{movie.poster_url}}"
-        alt=""
-      />
+      <iframe
+        src="{{movie.trailer_url}}"
+        width="500px" height="400px" class="rounded"
+      ></iframe>
+
     </div>
     <div class="movie-infos">
-      <div class="title">
+      <div class="title text-capitalize">
         <h1>{{movie.name}}</h1>
       </div>
 
       <p>
         <strong>Genre:</strong>
-        {% for g in genre %}
-          <p>{{g.name}}</p>
+        <div class="row">
+          {% for g in genre %}
+          <div id="genre" style="background-color: #32373D;" class="col-md-2 px-1 mx-1">
+            {{g.name}}
+          </div>
         {% endfor %}
+        </div>
       </p>
 
       <p>
         <strong>Run time:</strong>
         {{movie.runTime}}min
       </p>
-      <p>
+      <p class="text-capitalize">
         <strong>Director:</strong>
         {{movie.director.name}}
       </p>
-      <p>
+      <p class="text-capltalize">
         <strong>Cast:</strong>
        {% for c in cast %}
-        <p>{{c.name}}</p>
+        <p id="cast" class="col-md-3 px-1 mx-1 text-capitalize">{{c.name}}</p>
        {% endfor %}
       </p>
 
       <div class="movie-infos-actions">
-        <button>Buy Ticket</button>
-        <button>Watch Trailer</button>
-      </div>
+        <a class="btn btn-success" href="{% url 'ticket_form' %}">Buy Ticket</a>
+        <!-- <a href="" class="btn btn-danger">
+          <div class="row">
+            <div class="col-md-2">
+              <i class="fas fa-play-circle fa-lg"></i>
+            </div>
+            <div class="col-md-10">
+              Watch Trailer
+            </div>
+          </div>          
+        </a> -->
+      </div> 
     </div>
-  </div>
-
-  <div class="synopsis">
-    <p>
-      <strong>SYNOPSIS:</strong>
-      Roohi is a comedy action film directed by bishnu silwal.
-    </p>
   </div>
 </div>
 

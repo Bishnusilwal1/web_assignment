@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>TIcket View</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="col-md-8 m-auto">
+ <h1 class="mt-3">Your Tickets</h1>
+        {% for i in ticket %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{i.movie.poster_url}}" class="card-img-top" alt="...">
+                <class class="card-body">
+                <h5 class="card-title">Movie : {{i.movie.name}}</h5>
+                <p class="card-text">Cinema : {{i.cinema.name}}</p>
+                <p class="card-text">Location : {{i.cinema.location}}</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text">Start : {{i.show.show_start_time}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="card-text">End : {{i.show.show_start_time}}</p>
+                    </div>
+                </div>
+                <p class="card-text">Quantity : {{i.quantity}}</p>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock content %}

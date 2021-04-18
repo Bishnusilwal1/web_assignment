@@ -26,7 +26,7 @@ SECRET_KEY = 't*94m0)*nwc6vhr*d5-t%+26jnf+m9d9wg8fn3tvd-=+8ktf4&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myadmin',
-    'django_filters'
+    'django_filters',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,14 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR ,'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' # mail service smtp
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'gmagar478@gmail.com'
+EMAIL_HOST_PASSWORD = 'ogogcpxltlhuqllv'
+EMAIL_PORT = 587
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CORS_ORIGIN_ALLOW_ALL=True
+APPEND_SLASH= False

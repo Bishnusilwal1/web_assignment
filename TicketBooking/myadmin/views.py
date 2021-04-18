@@ -1,19 +1,27 @@
+
+
+
+
+
+
+
+
+
+
+
+
 from django.shortcuts import render, redirect
-from cinema.models import Movie
-<<<<<<< HEAD
+from cinema.models import Movie,Cast,Genre,Director
 from accounts.models import Profile
-=======
-<<<<<<< HEAD
->>>>>>> 720d29e76dacd579ae80cf71034433364c21f93c
 from Ticket.models import Show, Ticket
 from django.contrib.auth.models import User
-from .forms import ShowForm
 from django.views.decorators.csrf import csrf_protect
-from myadmin.forms import AdminLoginForm
+from myadmin.forms import AdminLoginForm, ShowForm,MovieForm,UserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from accounts.auth import admin_only
+from cinema.forms import CastForm,GenreForm,DirectorForm
 
 @csrf_protect
 def admin_login(request):
@@ -33,36 +41,14 @@ def admin_login(request):
         form = AdminLoginForm
         return render(request, 'admin1/adlogin.html', {'form': form})
 
-@login_required
+@login_required(login_url="adlogin")
 @csrf_protect
 def admin_logout(request):
     logout(request)
     return redirect('adlogin')
 
-"""
-    function for theatre
-"""
+@login_required(login_url="adlogin")
 @admin_only
-<<<<<<< HEAD
-@login_required
-=======
-=======
-from accounts.models import Profile
-from Ticket.models import Show, Ticket
-from django.contrib.auth.models import User
-from .forms import ShowForm
-from django.views.decorators.csrf import csrf_protect
-from myadmin.forms import AdminForm
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-"""
-    function for theatre
-"""
-
-@login_required
->>>>>>> 3338aa60c56689aa9e0b2b4302d550cf2d0123d9
->>>>>>> 720d29e76dacd579ae80cf71034433364c21f93c
 def home(request):
     theatre = Show.objects.count()
     movies = Movie.objects.count()
@@ -76,10 +62,14 @@ def home(request):
     }
     return render(request, 'admin1/dashboard.html', context)
 
+    
+""" theatre """
+
 def theatre(request):
     theatre = Show.objects.all()
     context = {
-        'theatres': theatre
+        'theatres': theatre,
+        
     }
     return render(request, 'admin1/theatre.html', context)
 
@@ -89,32 +79,33 @@ def theatre_add(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('dashboard')
     context = {'form': form}
     return render(request, 'admin1/addTheatre.html', context)
 
-def theatre_edit(request, tid):
-    theatre = Show.objects.get(id=tid)
-    form = ShowForm(request.POST or None, instance=movie)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'theatre':theatre,
-        'form': form
-        }
-    return render(request, 'admin1/addTheatre.html', context)
+def update_theatre(request,tid):
+    show=Show.objects.get(id=tid)
+    if request.method=='POST':
+        show.name=request.POST['name']
+        show.show_start_time=request.POST['show_start_time']
+        show.show_end_time=request.POST['show_end_time']
+        show.status=request.POST['status']
+        show.price=request.POST['price']
+        show.save()
+        return redirect('dashboard')
+    context={
+        'show':show
+    }
+    return render(request,'admin1/edit_theatre.html',context)
+
 
 def theatre_delete(request, tid):
     theatre = Show.objects.get(id=tid)
     theatre.delete()
-    return redirect('/')
+    return redirect('dashboard')
 
 
-"""
-    Function for movies
-"""
+"""  movies  """
 def movie(request):
     movies = Movie.objects.all()
     context = {
@@ -124,106 +115,207 @@ def movie(request):
 
 @csrf_protect
 def movie_add(request):
-    form = ShowForm(request.POST or None)
+    form = MovieForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('dashboard')
     context = {'form': form}
     return render(request, 'admin1/addmovie.html', context)
 
-def movie_edit(request, tid):
-    movie = Show.objects.get(id=tid)
-    form = ShowForm(request.POST or None, instance=movie)
-    if request.method == 'POST':
+def edit_movie(request ,id):
+    movie=Movie.objects.get(id=id)
+    if request.method=='POST':
+        form = MovieForm(request.POST, instance=movie)
         if form.is_valid():
             form.save()
-            return redirect('/')
-    context = {
+            print(form)
+            return redirect('dashboard')
+    context={
         'movie':movie,
-        'form': form
-        }
-    return render(request, 'admin1/addmovie.html', context)
-
-def movie_delete(request, tid):
-    movie = Show.objects.get(id=tid)
-    movie.delete()
-    return redirect('/')
-
-
-
-    """
-    Function for shows
-"""
-def show(request):
-    movies = Movie.objects.all()
-    context = {
-        'movies': movies
+        'form': MovieForm()
     }
-    return render(request, 'admin1/dashboard.html', context)
+    print(MovieForm())
+    return render(request,'admin1/edit_movie.html',context)
 
-@csrf_protect
-def show_add(request):
-    form = ShowForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {'form': form}
-    return render(request, 'admin1/addmovie.html', context)
 
-def show_edit(request, tid):
-    movie = Show.objects.get(id=tid)
-    form = ShowForm(request.POST or None, instance=movie)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'movie':movie,
-        'form': form
-        }
-    return render(request, 'admin1/addmovie.html', context)
-
-def show_delete(request, tid):
-    movie = Show.objects.get(id=tid)
+def movie_delete(request, id):
+    movie = Movie.objects.get(id=id)
     movie.delete()
-    return redirect('/')
+    return redirect('dashboard')
 
+
+""" users """
 
 def users(request):
-    user = Profile.objects.all()
+    user = User.objects.all()
     context = {
         'user':user
     }
     return render(request, 'admin1/user-dash.html', context)
 
-
-#admin login form
-
-
-def admin_login(request):
-    if request.method == 'POST':
-        form = AdminForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            user = authenticate(request, email=data['email'], password=data['password'])
-            if user is not None:
-                login(request, user)
-                messages.add_message(request, messages.SUCCESS, "logged on")
-                return redirect("admin-home")
-            else:
-                messages.add_message(request, messages.ERROR, "username or password is incorrect")
-                return render(request, 'admin1/login.html', {'form': form})
-    form = AdminForm
-    context={
-        'form':form,
+def ticket_dash(request):
+    ticket = Ticket.objects.all()
+    context = {
+        'ticket':ticket
     }
-    return render(request, 'admin1/login.html',context)
-
-def admin_logout(request):
-    logout(request)
-    return redirect('admin-login')
+    return render(request, 'admin1/ticket_dashboard.html', context)
 
 
-    
+@csrf_protect
+def user_add(request):
+    form = UserForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {'form': form}
+    return render(request, 'admin1/adduserform.html', context)
+
+def user_edit(request, tid):
+    movie = user.objects.get(id=tid)
+    form = UserForm(request.POST or None, instance=movie)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {
+        'movie':movie,
+        'form': form
+        }
+    return render(request, 'admin1/aduserform.html', context)
+
+def user_delete(request, id):
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('dashboard')
+
+def cast(request):
+    casts = Cast.objects.all()
+    return render(request, 'admin1/cast_dashboard.html', {'casts':casts})
+
+@csrf_protect
+def cast_add(request):
+    form = CastForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {'form': form}
+    return render(request, 'admin1/addcast.html', context)
+
+def cast_edit(request, tid):
+    cast = Cast.objects.get(id=tid)
+    form = CastForm(request.POST or None, instance=cast)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {
+        'cast':cast,
+        'form': form
+        }
+    return render(request, 'admin1/addcast.html', context)
+
+def cast_delete(request, tid):
+    cast = Cast.objects.get(id=tid)
+    cast.delete()
+    return redirect('dashboard')
+
+    # #delete Ticket
+
+
+
+def ticket(request):
+    ticket = Ticket.objects.all()
+    return render(request, 'admin1/ticket_dashboard.html', {'ticket':ticket})
+
+def ticket_delete(request, cid):
+    ticket = Ticket.objects.get(id=cid)
+    ticket.delete()
+    return redirect('dashboard')
+
+
+
+
+
+
+
+
+
+
+
+
+#Directors
+
+
+def director(request):
+    directors = Director.objects.all()
+    return render(request, 'admin1/director_dashboard.html', {'directors':directors})
+
+@csrf_protect
+def director_add(request):
+    if request.method == 'POST':
+        form = DirectorForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {'form': DirectorForm()}
+    return render(request, 'admin1/adddirector.html', context)
+
+def director_edit(request, did):
+    director = Director.objects.get(id=did)
+    form = DirectorForm(request.POST or None, instance=director)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {
+        'director':director,
+        'form': form
+        }
+    return render(request, 'admin1/adddirector.html', context)
+
+def director_delete(request, did):
+    director = Director.objects.get(id=did)
+    director.delete()
+    return redirect('dashboard')
+
+#Genre
+
+
+def genre(request):
+    genre = Genre.objects.all()
+    return render(request, 'admin1/genre_dashboard.html', {'genre':genre})
+
+
+@csrf_protect
+def genre_add(request):
+    form = GenreForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {'form': form}
+    return render(request, 'admin1/addgenre.html', context)
+
+def genre_edit(request, gid):
+    genre = Genre.objects.get(id=gid)
+    form = GenreForm(request.POST or None, instance=genre)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    context = {
+        'genre':genre,
+        'form': form
+        }
+    return render(request, 'admin1/addgenre.html', context)
+
+def genre_delete(request, gid):
+    genre = Genre.objects.get(id=gid)
+    genre.delete()
+    return redirect('dashboard')
+
+
+

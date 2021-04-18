@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="POST">
+<form style="border: none;" method="POST">
  {% csrf_token %} 
 	<div class="container auth-form">
 	<h1>Sign In</h1>
@@ -11,15 +11,14 @@
 	  {{form.as_p}}
 		{% for message in messages %}
 			{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-			<p>{{message}}</p>
+			<p class="text-success">{{message}}</p>
 			{% endif %}
 			{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-			<p>{{message}}</p>
+			<p class="text-danger">{{message}}</p>
 			{% endif %}
 		{% endfor %}
-
 	  <button class="auth-button" type="submit">Login</button>
-	  <a class="auth-href" href="#">Forgot password?</a>
+	  <a class="auth-href" href="">Forgot password?</a>
 	   
 	</div>
 </form>

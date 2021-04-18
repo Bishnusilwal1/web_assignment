@@ -17,6 +17,9 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Running time</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Director</th>
+            <th scope="col">Casts</th>
             <th scope="col">Trailer</th>
             <th scope="col">Poster</th>
             <th scope="col">Actions</th>
@@ -31,20 +34,30 @@
                 <td>
                     <span>{{movie.name}}</span>
                 </td>
+                
                 <td>
                     <span>{{movie.runTime}}min</span>
                 </td>
                 <td>
-                    <iframe width="420" height="315" src="{{movie.trailer_url}}">
+                    <span>{{movie.get_genre_values}}</span>
+                </td>
+                <td>
+                    <span>{{movie.director.name}}</span>
+                </td>
+                <td>
+                    <span>{{movie.get_casts_values}}</span>
+                </td>
+                <td>
+                    <iframe width="200" height="200" src="{{movie.trailer_url}}">
                     </iframe>
                 </td>
                 <td>
                     <img src="{{movie.poster_url}}" width="100px;" alt="">
                 </td>
                 <td>
-                    <a href="" class="text-warning">Edit</a>
+                    <a href="{% url 'edit_movie' movie.id %}" class="text-warning">Edit</a>
                     |
-                    <a href="" class="text-danger">Delete</a>
+                    <a href="{% url 'delete_movie' movie.id %}" class="text-danger">Delete</a>
                 </td>            
             </tr>
           {% endfor %}

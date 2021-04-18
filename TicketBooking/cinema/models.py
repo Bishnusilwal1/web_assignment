@@ -39,3 +39,23 @@ class Movie(models.Model):
    
     def __str__(self):
         return self.name
+
+    def get_genre_values(self):
+
+        ret = ''
+
+        print(self.genre.all())
+        for genre in self.genre.all():
+            ret = ret + genre.name + ','
+
+        return ret[:-1]
+
+    def get_casts_values(self):
+
+        ret = ''
+
+        print(self.casts.all())
+        for casts in self.casts.all():
+            ret = ret + casts.name + ','
+
+        return ret[:-1]
